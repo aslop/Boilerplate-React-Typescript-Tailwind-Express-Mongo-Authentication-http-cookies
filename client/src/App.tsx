@@ -5,10 +5,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 
 // Pages
-import { Home } from './pages/Home';
-import { PageNotFound } from './pages/PageNotFound';
-import { LoginPage } from './pages/LoginPage';
-import { RegisterPage } from './pages/RegisterPage';
+import { Home } from './pages';
+import { PageNotFound } from './pages';
+import { LoginPage } from './pages';
+import { RegisterPage } from './pages';
 
 // Components
 import { MainNav } from './components/MainNav';

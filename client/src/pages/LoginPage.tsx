@@ -5,7 +5,7 @@ export const LoginPage = () => {
   useRedirectIfUserExists();
 
   return (
-    <div className="flex w-full h-screen items-center justify-center">
+    <div className="flex w-full h-screen items-center justify-center bg-gray-100">
       <LoginForm />
     </div>
   );

@@ -125,3 +125,43 @@ export async function logUserOut(req: Request, res: Response) {
     throw new Error('Could not log user out');
   }
 }
+
+export async function getUserFromCookies(req: Request, res: Response) {
+  try {
+    // If access token
+    if (req?.cookies?.accessToken) {
+      const { accessToken } = req.cookies;
+      const decodedAccessToken = jwt.verify(accessToken, process.env.JWT_SIGNATURE);
+
+      const foundUser = await User.findOne({
+        _id: decodedAccessToken?.userId,
+      });
+
+      return {
+        id: foundUser._id,
+        email: foundUser.email,
+        role: foundUser.role,
+      };
+    }
+    // if no access token but refresh token
+    if (req?.cookies?.refreshToken) {
+      const { refreshToken } = req.cookies;
+      const { sessionToken } = jwt.verify(refreshToken, process.env.JWT_SIGNATURE);
+      const currentSession = await Session.findOne({ sessionToken });
+
+      if (currentSession.valid) {
+        const currentUser = await User.findOne({ _id: currentSession.userId });
+
+        await refreshTokens(sessionToken, currentUser._id, res);
+
+        return {
+          id: currentUser._id,
+          email: currentUser.email,
+          role: currentUser.role,
+        };
+      }
+    }
+  } catch (e) {
+    console.error(e);
+  }
+}

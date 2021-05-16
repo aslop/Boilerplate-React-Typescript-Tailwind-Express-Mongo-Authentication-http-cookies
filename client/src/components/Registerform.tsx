@@ -19,7 +19,7 @@ export const Registerform = () => {
   return (
     <div>
       <form
-        className="flex flex-col bg-gray-100 w-full h-full p-10 rounded-md"
+        className="flex flex-col bg-white shadow-lg w-full h-full p-10 rounded-md"
         onSubmit={handleLogin}
       >
         <div className="text-xl font-bold text-gray-800">Register</div>
@@ -40,7 +40,7 @@ export const Registerform = () => {
           }}
         />
         <button className="bg-green-400 text-white p-2 mt-4 rounded-sm" type="submit">
-          Login
+          Register
         </button>
       </form>
     </div>

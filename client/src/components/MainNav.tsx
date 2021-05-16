@@ -5,7 +5,7 @@ export const MainNav = () => {
   const { logout, currentUser } = useAuth();
 
   return (
-    <div className="w-full shadow-lg text-gray-600 p-3 color-white flex flex-row justify-between items-center">
+    <div className="w-full shadow-lg text-gray-600 p-3 color-white flex flex-row justify-between items-center bg-white">
       <div>
         {currentUser ? (
           <Link to={'/'}>
